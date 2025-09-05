@@ -2,99 +2,143 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Dark Tiramisu Base ========== */
+/* ========= THEME HELPERS ========= */
 
-@layer base {
-     :root {
-        --bg-grad: radial-gradient(1200px 700px at 20% 10%, rgba(255, 255, 255, .05), transparent 60%), linear-gradient(180deg, #18100D, #0D0706);
+:root {
+    --bg-grad: radial-gradient( 1200px 700px at 20% 10%, rgba(255, 255, 255, .05), transparent 60%), linear-gradient(180deg, #18100D, #0D0706);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    color: rgb(246 239 230 / 0.9);
+    background-image: var(--bg-grad);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.container {
+    width: min(1200px, 92vw);
+    margin-inline: auto;
+}
+
+.hr {
+    border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+.prose-muted {
+    color: rgb(246 239 230 / 0.7);
+}
+
+
+/* ========= SOCIAL BEAM ========= */
+
+@layer components {
+    .sb .bt {
+        position: relative;
+        height: 120px;
+        display: flex;
+        align-items: flex-end;
+        outline: none;
+        background: none;
+        border: none;
     }
-    html,
-    body {
-        height: 100%;
+    .sb .bt .button-holder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        width: 70px;
+        background-color: #0a0a0a;
+        border-radius: 5px;
+        color: var(--sb-color-ink, #f6efe6);
+        font-weight: 700;
+        transition: 300ms;
+        outline: var(--sb-color-ink, #f6efe6) 2px solid;
+        outline-offset: 20;
     }
-    body {
-        color: rgb(246 239 230 / 0.9);
-        /* mascarpone */
-        background-image: var(--bg-grad);
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
+    .sb .bt .button-holder svg {
+        height: 28px;
+        width: 28px;
+        fill: currentColor;
+        transition: 300ms;
     }
-    /* optional: better text selection */
-     ::selection {
-        background: rgba(143, 36, 50, 0.35);
-        /* wine */
-        color: #F6EFE6;
-        /* mascarpone */
+    .sb .bt .light-holder {
+        position: absolute;
+        height: 120px;
+        width: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-}
-
-
-/* ========== Small Utilities ========== */
-
-
-/* ---- helper classes (no @apply, so build-safe) ---- */
-
-.ghost-title {
-    color: rgba(246, 239, 230, 0.10);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: .9;
-}
-
-.eyebrow {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    color: #8F2432;
-    /* wine */
-    font-weight: 800;
-}
-
-.hairline {
-    border-top: 1px solid rgba(255, 255, 255, .14);
-}
-
-.tile {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    /* rounded-lg */
-    border: 1px solid rgba(255, 255, 255, .12);
-    /* border + border-white/12 */
-    background: rgba(255, 255, 255, .03);
-    /* bg-white/[.03] */
-    box-shadow: 0 12px 32px rgba(0, 0, 0, .28);
-    /* shadow-card */
-}
-
-.link-pill {
-    display: inline-block;
-    border-radius: 9999px;
-    background: #8F2432;
-    /* wine */
-    padding: .5rem 1rem;
-    /* px-4 py-2 */
-    font-weight: 800;
-    color: #F6EFE6;
-    /* mascarpone */
-    box-shadow: 0 10px 30px rgba(143, 36, 50, .25);
-}
-
-.link-pill:hover {
-    background: #A73341;
-}
-
-
-/* wine-700 */
-
-
-/* optional: motion-friendly defaults */
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    .sb .bt .light-holder .dot {
+        position: absolute;
+        top: 0;
+        width: 6px;
+        height: 6px;
+        background-color: #0a0a0a;
+        border-radius: 10px;
+        z-index: 2;
+    }
+    .sb .bt .light-holder .light {
+        position: absolute;
+        top: 0;
+        width: 140px;
+        height: 140px;
+        clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
+        background: transparent;
+    }
+    .sb .bt:hover .button-holder {
+        color: var(--sb-color);
+        outline: var(--sb-color) 2px solid;
+        outline-offset: 2px;
+    }
+    .sb .bt:hover .button-holder svg {
+        fill: var(--sb-color);
+    }
+    .sb .bt:hover .light-holder .light {
+        background: linear-gradient( 180deg, var(--sb-color) 0%, rgba(200, 20, 100, 0) 75%, rgba(200, 20, 100, 0) 100%);
+    }
+    /* Force all SVG paths to inherit text color */
+    .sb .sb-icon :is(path, circle, rect, polygon, polyline) {
+        fill: currentColor !important;
+        stroke: currentColor !important;
+    }
+    /* Brand colors */
+    .sb .bt.sb--instagram {
+        --sb-color: #E1306C;
+        --sb-color-ink: #E1306C;
+    }
+    .sb .bt.sb--facebook {
+        --sb-color: #1877F2;
+        --sb-color-ink: #1877F2;
+    }
+    .sb .bt.sb--linkedin {
+        --sb-color: #0A66C2;
+        --sb-color-ink: #0A66C2;
+    }
+    .sb .bt.sb--youtube {
+        --sb-color: #FF0000;
+        --sb-color-ink: #FF0000;
+    }
+    .sb .bt.sb--x {
+        --sb-color: #000000;
+        --sb-color-ink: #000000;
+    }
+    .sb .bt.sb--github {
+        --sb-color: #181717;
+        --sb-color-ink: #181717;
+    }
+    .sb .bt.sb--discord {
+        --sb-color: #5865F2;
+        --sb-color-ink: #5865F2;
+    }
+    .sb .bt.sb--reddit {
+        --sb-color: #FF4500;
+        --sb-color-ink: #FF4500;
     }
 }
