@@ -4,11 +4,14 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-/** Reusable spotlight/beam social button */
+/**
+ * Spotlight/Beam social button (uses styles from app/globals.css @layer components .sb ...).
+ * Hover state glows in brand color; rest is dim/neutral.
+ */
 function SocialBeam({
   href,
   label,
-  variant, // 'instagram' | 'facebook' | 'linkedin' | 'youtube' | 'x' | 'github' | 'discord' | 'reddit'
+  variant,
   icon,
   className = '',
 }: {
@@ -27,7 +30,7 @@ function SocialBeam({
   className?: string;
 }) {
   return (
-    <div className={`sb light-button ${className}`}>
+    <div className={`sb ${className}`}>
       <Link
         href={href}
         target="_blank"
@@ -56,12 +59,12 @@ function SocialBeam({
 export default function Footer() {
   return (
     <footer className="w-full border-t border-white/10 bg-coffee-900/90 backdrop-blur-md">
-      {/* fixed bar height so the logo can't resize it */}
+      {/* Lock the footer bar height so the logo can't resize it */}
       <div className="container h-20 md:h-24">
         <div className="flex items-center justify-between h-full gap-6">
-          {/* LEFT: footer logo (constrained by wrapper height) */}
+          {/* LEFT: footer logo, constrained by wrapper height */}
           <Link href="/" aria-label="Full Scope Media — Home" className="flex-none">
-            <div className="h-36 md:h-48">
+            <div className="h-24 md:h-24">
               <img
                 src="/Logonobckgrndblack.svg"
                 alt="Full Scope Media"
@@ -72,8 +75,8 @@ export default function Footer() {
             </div>
           </Link>
 
-          {/* RIGHT: socials */}
-          <nav className="flex items-end gap-5 md:gap-6">
+          {/* RIGHT: socials — dim at rest, brand glow on hover */}
+          <nav className="flex items-end gap-6 md:gap-7">
             <SocialBeam
               href="https://instagram.com/your-handle"
               label="instagram"

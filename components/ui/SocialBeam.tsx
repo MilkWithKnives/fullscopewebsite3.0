@@ -3,33 +3,35 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-type Variant =
-  | 'instagram'
-  | 'facebook'
-  | 'linkedin'
-  | 'youtube'
-  | 'x'
-  | 'github'
-  | 'discord'
-  | 'reddit';
-
-type SocialBeamProps = {
-  href: string;
-  label: string;          // accessible label + small text under icon
-  variant: Variant;       // controls colors
-  icon: ReactNode;        // the glyph SVG
-  className?: string;     // optional sizing override
-};
-
+/**
+ * Spotlight/Beam social button.
+ * - Dim & neutral at rest
+ * - Brand glow on hover (white for X/GitHub, brand color for others)
+ * - CSS styles live in `app/globals.css`
+ */
 export default function SocialBeam({
   href,
   label,
   variant,
   icon,
   className = '',
-}: SocialBeamProps) {
+}: {
+  href: string;
+  label: string;
+  variant:
+    | 'instagram'
+    | 'facebook'
+    | 'linkedin'
+    | 'youtube'
+    | 'x'
+    | 'github'
+    | 'discord'
+    | 'reddit';
+  icon: ReactNode;
+  className?: string;
+}) {
   return (
-    <div className={`sb light-button ${className}`}>
+    <div className={`sb ${className}`}>
       <Link
         href={href}
         target="_blank"
@@ -37,13 +39,13 @@ export default function SocialBeam({
         aria-label={label}
         className={`bt sb--${variant}`}
       >
-        {/* spotlight cone */}
+        {/* Spotlight cone */}
         <div className="light-holder" aria-hidden="true">
           <div className="dot" />
           <div className="light" />
         </div>
 
-        {/* icon chip + label */}
+        {/* Icon chip + label */}
         <div className="button-holder">
           <div className="sb-icon" aria-hidden="true">
             {icon}

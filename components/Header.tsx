@@ -115,7 +115,7 @@ export default function Header() {
         className={`md:hidden fixed inset-0 z-50 transition-opacity duration-200 ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        aria-hidden={!open}
+        aria-hidden={!open ? "true" : "false"}
         onClick={() => setOpen(false)}
       >
         <div className="absolute inset-0 bg-black/60" />
