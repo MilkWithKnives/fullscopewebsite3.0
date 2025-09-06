@@ -60,11 +60,11 @@ export default function Footer() {
   return (
     <footer className="w-full border-t border-white/10 bg-coffee-900/90 backdrop-blur-md">
       {/* Lock the footer bar height so the logo can't resize it */}
-      <div className="container h-20 md:h-24">
+      <div className="container h-12 md:h-16">
         <div className="flex items-center justify-between h-full gap-6">
           {/* LEFT: footer logo, constrained by wrapper height */}
           <Link href="/" aria-label="Full Scope Media — Home" className="flex-none">
-            <div className="h-24 md:h-24">
+            <div className="h-12 md:h-16">
               <img
                 src="/Logonobckgrndblack.svg"
                 alt="Full Scope Media"
@@ -78,7 +78,7 @@ export default function Footer() {
           {/* RIGHT: socials — dim at rest, brand glow on hover */}
           <nav className="flex items-end gap-6 md:gap-7">
             <SocialBeam
-              href="https://instagram.com/your-handle"
+              href="https://instagram.com/full.scope.media"
               label="instagram"
               variant="instagram"
               icon={
