@@ -1,8 +1,10 @@
+// app/about/page.tsx
 import Image from "next/image";
-import aboutPhoto from "/public/about-photo.png";
 
 export const metadata = {
   title: "About | Full Scope Media",
+  description:
+    "About Full Scope Media — real estate media, photography, video, drone, 3D tours, and more.",
 };
 
 export default function AboutPage() {
@@ -10,16 +12,15 @@ export default function AboutPage() {
     <main className="min-h-screen bg-coffee-900 text-mascarpone">
       <section className="container px-4 py-16 sm:py-20">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
-          {/* Photo */}
+          {/* Photo (stacks on mobile) */}
+          <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px]">
             <Image
-              src={aboutPhoto}
+              src="/about-photo.png"  // ✅ this file lives at /public/about-photo.png
               alt="About Full Scope Media"
               fill
               className="object-cover rounded-lg shadow-lg"
               priority
             />
-            {/* Decorative background element */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-coffee-800 to-coffee-900 opacity-30" />
           </div>
 
           {/* Text */}
@@ -28,15 +29,13 @@ export default function AboutPage() {
               About Me
             </h1>
             <p className="text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
-              Hi, I’m the founder of Full Scope Media. I specialize in high-end
-              photography, video production, and creative storytelling. My goal
-              is to bring your vision to life with visuals that are sharp,
-              cinematic, and unforgettable.
+              Hi, I’m the founder of <span className="font-bold">Full Scope Media</span>.
+              I specialize in high-end real estate visuals — photography, cinematic video,
+              aerial drone, floor plans, 3D tours, and virtual staging.
             </p>
             <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
-              Whether it’s capturing a property, building a brand identity, or
-              creating stunning content, I bring both technical expertise and a
-              creative edge to every project.
+              My goal is simple: make your listings look exceptional, load fast,
+              and convert curious views into showings.
             </p>
           </div>
         </div>
