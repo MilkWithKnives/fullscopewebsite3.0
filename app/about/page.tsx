@@ -1,4 +1,5 @@
 import Image from "next/image";
+import aboutPhoto from "/public/about-photo.png";
 
 export const metadata = {
   title: "About | Full Scope Media",
@@ -10,14 +11,15 @@ export default function AboutPage() {
       <section className="container px-4 py-16 sm:py-20">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
           {/* Photo */}
-          <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px]">
             <Image
-              src="/about-photo.png" // ✅ Correct usage for files inside /public
+              src={aboutPhoto}
               alt="About Full Scope Media"
               fill
               className="object-cover rounded-lg shadow-lg"
               priority
             />
+            {/* Decorative background element */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-tr from-coffee-800 to-coffee-900 opacity-30" />
           </div>
 
           {/* Text */}
